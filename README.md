@@ -71,19 +71,19 @@ Program to design a half subtractor and full subtractor circuit and verify its t
     endmodule
 
 
-    module exp4a(df,bo,a,b,bin);
-    output df;
-    output bo;
+    module exp4a(diff,borr,a,b,Bin);
+    output diff;
+    output borr;
     input a;
     input b;
-    input bin;
-    wire w1,w2,w3;
-    assign w1=a^b;
-    assign w2=(~a&b);
-    assign w3=(~w1&bin);
-    assign df=w1^bin;
-    assign bo=w2|w3;
-    endmodule
+    input Bin;
+    wire s1,c1,c2;
+    xor(s1,a,b);
+    and(c1,~a,b);
+    xor(diff,s1,Bin);
+    and(c2,~s1,Bin);
+    or(borr,c2,c1);
+    endmodule 
 
 
 **RTL Schematic**
